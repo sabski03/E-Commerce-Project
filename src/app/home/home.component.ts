@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CartService } from '../services/cart.services';
 
 @Component({
   selector: 'app-home',
@@ -11,11 +12,20 @@ export class HomeComponent {
     new Product('Nordic Chair', 'assets/product-1.png', 50.00),
     new Product('Kruzo Aero Chair', 'assets/product-2.png', 78.00),
     new Product('Ergonomic Chair', 'assets/product-4.png', 43.00),
-    new Product('Ergomic Sofa', 'assets/product-5.png', 43.00)
+    new Product('Ergonomic Sofa', 'assets/product-5.png', 43.00)
   ];
+
+  constructor(private cartService: CartService) { }
+
+  message: string = '';
+  addToCart(product: Product): void {  
+    this.cartService.addToCart(product);
+    this.message = 'Product added to cart: ' + product.name;
+  }
 }
 
 export class Product {
+  public hovered: boolean = false;
   constructor(
     public name: string,
     public imageUrl: string,

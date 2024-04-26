@@ -2,14 +2,19 @@
 
 <div class="container">
     <div class="row">
+        <b style="text-align: center; font-size: 30px;" [ngStyle]="{color: message != '' ? 'Green' : 'Red'}">{{ message }}</b>
       <div class="col-12 col-md-3 col-lg-3 mb-5" *ngFor="let product of products">
-        <a class="links" href="/home">
+        <div class="product-container" (mouseenter)="product.hovered = true" (mouseleave)="product.hovered = false">
           <img [src]="product.imageUrl" class="img-fluid product-thumbnail" alt="Product Image">
           <h3>{{ product.name }}</h3>
           <b class="price">{{ '$' + product.price.toFixed(2) }}</b>
-        </a>
+          <button *ngIf="product.hovered" (click)="addToCart(product)" class="btn btn-primary">Add to Cart</button>
+          
+        </div>
       </div>
     </div>
-</div>
+  </div>
+  
+  
 
 <app-footer></app-footer>

@@ -1,0 +1,19 @@
+<app-header></app-header>
+  
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+          <h2>Cart</h2>
+          <ul class="list-group">
+                <li class="list-group-item" *ngFor="let item of cartItems">
+                    <img [src]="item.imageUrl" class="img-fluid cart-thumbnail" alt="Product Image">
+                    <span>{{ item.name }}</span>
+                    <span class="price">{{ '$' + item.price.toFixed(2) }}</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+  
+<app-footer></app-footer>
+  
