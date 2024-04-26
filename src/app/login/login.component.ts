@@ -7,11 +7,23 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+  username: string = '';
+  password: string = '';
+  message: string = '';
+  users: any[] = [
+    { username: 'saba', password: 'sabasaba' },
+    { username: 'test', password: 'testtest' },
+  ];
 
   constructor(private router: Router) {}
 
-  goToRegister() {
-    this.router.navigate(['/register']);
-  }
+  onSubmit() {
+    const foundUser = this.users.find(user => user.username === this.username && user.password === this.password);
 
+    if (foundUser) {
+      this.router.navigate(['/home']);
+    } else {
+      this.message = 'Invalid username or password. Please try again.';
+    }
+  }
 }
