@@ -1,0 +1,12 @@
+.product-thumbnail{
+    height: 300px;
+}
+.links{
+    text-align: center;
+    color: black;
+    text-decoration: none;
+}
+.price{
+    display: flex;
+    justify-content: center;
+}
