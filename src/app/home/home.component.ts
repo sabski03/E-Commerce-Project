@@ -1,6 +1,15 @@
 import { Component } from '@angular/core';
 import { CartService } from '../services/cart.services';
 
+export class Product {
+  public hovered: boolean = false;
+  constructor(
+    public name: string,
+    public imageUrl: string,
+    public price: number
+  ) {}
+}
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -15,20 +24,14 @@ export class HomeComponent {
     new Product('Ergonomic Sofa', 'assets/product-5.png', 43.00)
   ];
 
+  message: string = '';
+     
   constructor(private cartService: CartService) { }
 
-  message: string = '';
-  addToCart(product: Product): void {  
+  addToCart(product: Product): void {
     this.cartService.addToCart(product);
     this.message = 'Product added to cart: ' + product.name;
   }
-}
 
-export class Product {
-  public hovered: boolean = false;
-  constructor(
-    public name: string,
-    public imageUrl: string,
-    public price: number
-  ) {}
+  
 }

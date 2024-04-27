@@ -1,19 +1,35 @@
 <app-header></app-header>
-  
+
 <div class="container">
     <div class="row">
-        <div class="col-12">
-          <h2>Cart</h2>
-          <ul class="list-group">
-                <li class="list-group-item" *ngFor="let item of cartItems">
-                    <img [src]="item.imageUrl" class="img-fluid cart-thumbnail" alt="Product Image">
-                    <span>{{ item.name }}</span>
-                    <span class="price">{{ '$' + item.price.toFixed(2) }}</span>
-                </li>
-            </ul>
+      <div class="col-12">
+        <h2>Cart</h2>
+        <ul class="list-group">
+          <li class="list-group-item" *ngFor="let item of cartItems">
+            <div class="row">
+              <div class="col-3">
+                <img [src]="item.imageUrl" class="img-fluid cart-thumbnail" alt="Product Image">
+              </div>
+              <div class="col-6">
+                <span>{{ item.name }}</span>
+              </div>
+              <div class="col-2 text-right">
+                <span class="price">{{ '$' + item.price.toFixed(2) }}</span>
+              </div>
+              <div class="col-1">
+                <button (click)="removeItem(item)" class="btn btn-danger btn-sm">Remove</button>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <div *ngIf="cartItems.length === 0" class="text-center">
+          Your cart is empty.
         </div>
+        <div *ngIf="cartItems.length > 0" class="text-right mt-3">
+          <h4>Total Price: {{ getTotalPrice() | currency }}</h4>
+        </div>
+      </div>
     </div>
-</div>
+  </div>
   
 <app-footer></app-footer>
-  
